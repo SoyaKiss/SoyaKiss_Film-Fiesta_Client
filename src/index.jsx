@@ -1,14 +1,13 @@
 import { createRoot } from "react-dom/client";
+import { MainView } from "./components/main-view/main-view";
+
 import "./index.scss";
-let FilmFiestaApplication = () => {
-  return (
-    <div className="film-fiesta">
-      <div>Good Day Mate</div>
-    </div>
-  );
+
+const FilmFiestaApplication = () => {
+  return <MainView />;
 };
 
-let container = document.querySelector("#root");
-let root = createRoot(container);
+const container = document.querySelector("#root");
+const root = createRoot(container);
 
 root.render(<FilmFiestaApplication />);
