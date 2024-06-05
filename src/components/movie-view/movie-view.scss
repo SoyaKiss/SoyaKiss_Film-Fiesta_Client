@@ -1,0 +1,24 @@
+.movie-card-container {
+  margin: auto;
+  margin-top: 50px;
+  max-width: 400px;
+}
+
+.movie-image-container {
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  max-width: 80%;
+  height: auto;
+}
+
+.movie-back-button-container {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.movie-back-button {
+  width: 100px;
+}

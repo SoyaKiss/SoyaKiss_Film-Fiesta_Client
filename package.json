@@ -2,14 +2,17 @@
   "name": "package.json",
   "version": "1.0.0",
   "scripts": {
+    "start": "parcel src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "description": "<strong>Film-Fiesta App Build Instructions</strong>",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.2",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {

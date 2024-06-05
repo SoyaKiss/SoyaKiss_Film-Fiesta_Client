@@ -1,1 +1,1 @@
-{"mappings":"AAEA","sources":["src/index.scss"],"sourcesContent":["$color: dark blue;\n\n.film-fiesta {\n  color: $color;\n}\n"],"names":[],"version":3,"file":"index.css.map","sourceRoot":"/__parcel_source_root/"}
+{"mappings":"AAEA","sources":["src/index.scss"],"sourcesContent":["$color: blue;\n\n.film-fiesta {\n  color: $color;\n}\n"],"names":[],"version":3,"file":"index.css.map","sourceRoot":"/__parcel_source_root/"}
