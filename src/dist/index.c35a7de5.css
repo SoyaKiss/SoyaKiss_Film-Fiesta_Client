@@ -19413,11 +19413,97 @@ textarea.form-control-lg {
   }
 }
 
-.card-content {
+.login-button {
+  text-align: center;
+  width: 150px;
+  margin: 20px;
+}
+
+.sign-up-button {
+  text-align: center;
+  width: 150px;
+}
+
+.login-form {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.submit-button {
+  text-align: center;
+  width: 150px;
+  margin: 20px;
+}
+
+.login-button {
+  text-align: center;
+  width: 150px;
+}
+
+.inline-button {
+  text-align: center;
+  width: 100%;
+  margin: 25px;
+  display: inline-block;
+}
+
+.logout-button.inline-button {
+  width: auto;
+}
+
+.navbar-brand {
+  padding: 0 25px;
+}
+
+.nav-link {
+  padding: 5px 50px;
+}
+
+.mini-movie-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 10px;
+  box-shadow: 0 0 5px #0000001a;
+}
+
+.mini-image {
+  border-radius: 4px;
+  width: 100%;
+}
+
+.mini-button {
+  width: 100%;
+}
+
+.movie-card {
+  flex-direction: column;
+  max-width: 254px;
+  max-height: 375px;
+  display: flex;
+}
+
+.card.body {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   display: flex;
+}
+
+.card-title {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.card-text {
+  margin-bottom: 0;
+}
+
+.card-content {
+  flex-grow: 1;
+  max-width: 254px;
+  max-height: 375px;
 }
 
 .image-container {
@@ -19426,6 +19512,7 @@ textarea.form-control-lg {
 }
 
 .image {
+  object-fit: cover;
   width: 100%;
   height: 375px;
 }

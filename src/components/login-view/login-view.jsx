@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom"; // Import Link for navigation
 
-export const LoginView = ({ onLoggedIn, onSignUpClicked }) => {
+import "./login-view.scss";
+
+export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,28 +36,30 @@ export const LoginView = ({ onLoggedIn, onSignUpClicked }) => {
           localStorage.setItem("token", data.token);
           onLoggedIn(data.token);
         } else {
-          alert("No such user");
+          setError("Invalid username or password.");
         }
       })
-      .catch((e) => {
-        console.error("Login error:", e);
-        alert("Something went wrong");
+      .catch((error) => {
+        console.error("Login error:", error);
+        setError("Something went wrong. Please try again.");
       });
   };
 
   return (
     <Container fluid>
-      <Row xs={1} sm={2} md={3} lg={4} xl={4}>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formUsername">
-            <Form.Label>Username:</Form.Label>
-            <Form.Control
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-              minLength="3"
-            />
+      <Row className="justify-content-center">
+        <Col xs={12} md={6}>
+          <Form onSubmit={handleSubmit} className="login-form">
+            <Form.Group controlId="formUsername">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                minLength={3}
+              />
+            </Form.Group>
             <Form.Group controlId="formPassword">
               <Form.Label>Password:</Form.Label>
               <Form.Control
@@ -63,21 +69,16 @@ export const LoginView = ({ onLoggedIn, onSignUpClicked }) => {
                 required
               />
             </Form.Group>
-            <br></br>
-            <Button variant="primary" type="submit">
-              Submit
+            {error && <p className="text-danger">{error}</p>}
+            <Button variant="primary" type="submit" className="login-button">
+              Login
             </Button>
-            <br></br>
-            <br></br>
-            <Button
-              onClick={onSignUpClicked}
-              variant="secondary"
-              type="Don't have an account?"
-            >
+            {/* Update the Sign Up button to navigate to the Sign Up page */}
+            <Link to="/signup" className="sign-up-button">
               Sign Up Here
-            </Button>
-          </Form.Group>
-        </Form>
+            </Link>
+          </Form>
+        </Col>
       </Row>
     </Container>
   );

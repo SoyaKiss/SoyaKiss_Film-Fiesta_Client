@@ -1,7 +1,14 @@
 import { Button, Card, Container, Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "./movie-view.scss";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movie }) => {
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate(-1); // This navigates back to the previous page in the history stack
+  };
+
   return (
     <Container>
       <Row className="justify-content-center">
@@ -23,7 +30,7 @@ export const MovieView = ({ movie, onBackClick }) => {
           <div className="movie-back-button-container">
             <Button
               variant="outline-secondary"
-              onClick={onBackClick}
+              onClick={handleBackClick}
               className="movie-back-button"
             >
               Back

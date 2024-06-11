@@ -1,0 +1,10 @@
+.inline-button {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin: 25px;
+}
+
+.logout-button.inline-button {
+  width: auto;
+}
