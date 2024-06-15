@@ -14,7 +14,10 @@ export const MiniMovieCard = ({ movie }) => {
   };
 
   return (
-    <Card className="mini-movie-card" style={{ width: "12rem" }}>
+    <Card
+      className="mini-movie-card"
+      style={{ width: "12rem", margin: "10px" }}
+    >
       <div className="mini-card-content">
         <div className="mini-image-container">
           <Card.Img
@@ -30,6 +33,7 @@ export const MiniMovieCard = ({ movie }) => {
       </div>
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
+        <Card.Text>{movie.Description}</Card.Text>
         <Button
           variant="outline-secondary"
           className="mini-button"

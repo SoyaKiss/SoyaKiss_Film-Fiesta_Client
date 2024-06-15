@@ -15,7 +15,7 @@ import {
 } from "react-router-dom";
 import "./main-view.scss";
 
-const MovieDetail = ({ movies }) => {
+const MovieDetail = ({ movies, onAddToFavorites }) => {
   const { movieId } = useParams();
   const movie = movies.find((m) => m._id === movieId);
 
@@ -23,11 +23,14 @@ const MovieDetail = ({ movies }) => {
     return <div>Movie not found</div>;
   }
 
-  return <MovieView movie={movie} />;
+  return <MovieView movie={movie} onAddToFavorites={onAddToFavorites} />;
 };
 
 export const MainView = () => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
 
@@ -61,13 +64,42 @@ export const MainView = () => {
     }
   }, [token]);
 
-  const handleLoggedIn = (token) => {
-    setToken(token);
-    localStorage.setItem("token", token);
+  const handleAddToFavorites = async (movie) => {
+    try {
+      const response = await fetch(
+        `https://film-fiesta-2f42541ec594.herokuapp.com/Users/${user.Username}/favorites/${movie.Title}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const updatedUser = await response.json();
+      setUser(updatedUser);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      console.log("Updated user:", updatedUser);
+      alert(`${movie.Title} has been added to your favorites.`);
+    } catch (error) {
+      console.error("Error adding to favorites:", error);
+      alert("Failed to add to favorites. Please try again.");
+    }
+  };
+
+  const handleLoggedIn = (authData) => {
+    setToken(authData.token);
+    setUser(authData.user);
+    localStorage.setItem("token", authData.token);
+    localStorage.setItem("user", JSON.stringify(authData.user));
   };
 
   const handleLoggedOut = () => {
     setToken(null);
+    setUser(null);
     localStorage.removeItem("token");
     localStorage.removeItem("user");
   };
@@ -108,7 +140,13 @@ export const MainView = () => {
             />
             <Route
               path="/profile"
-              element={<ProfileView />} // Render ProfileView component for /profile route
+              element={
+                token ? (
+                  <ProfileView user={user} onLoggedOut={handleLoggedOut} />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
             />
             <Route
               path="/movies/:movieId"
@@ -119,7 +157,10 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col xs={12} md={8}>
-                    <MovieDetail movies={movies} />
+                    <MovieDetail
+                      movies={movies}
+                      onAddToFavorites={handleAddToFavorites}
+                    />
                   </Col>
                 )
               }
@@ -142,7 +183,10 @@ export const MainView = () => {
                         className="mb-4"
                         key={movie._id}
                       >
-                        <MovieCard movie={movie} />
+                        <MovieCard
+                          movie={movie}
+                          onAddToFavorites={handleAddToFavorites}
+                        />
                       </Col>
                     ))}
                     <Col xs={12} className="text-center mt-4">

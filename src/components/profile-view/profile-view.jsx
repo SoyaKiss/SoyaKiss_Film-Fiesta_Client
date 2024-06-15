@@ -6,13 +6,14 @@ export const ProfileView = () => {
   const [user, setUser] = useState(null);
   const [editedUser, setEditedUser] = useState(null);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const userData = await fetchUserData();
         setUser(userData);
-        setFavoriteMovies(userData.FavoriteMovies);
+        setFavoriteMovies(userData.favoriteMovies);
         setEditedUser({ ...userData });
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -45,7 +46,7 @@ export const ProfileView = () => {
       alert("Your account has been successfully deregistered.");
     } catch (error) {
       console.error("Error deregistering user:", error);
-      alert("Failed to deregister your account. Please try");
+      alert("Failed to deregister your account. Please try again.");
     }
   };
 
@@ -106,8 +107,8 @@ export const ProfileView = () => {
         <Col>
           <h3>Favorite Movies</h3>
           <Row>
-            {favoriteMovies.map((movieId) => (
-              <MiniMovieCard key={movieId} movie={movieId} />
+            {favoriteMovies.map((movie) => (
+              <MiniMovieCard key={movie._id} movie={movie} />
             ))}
           </Row>
         </Col>
@@ -117,20 +118,78 @@ export const ProfileView = () => {
 };
 
 const fetchUserData = async () => {
-  return {
-    Username: "exampleUser",
-    Email: "user@example.com",
-    Birthday: "1990-01-01",
-    FavoriteMovies: ["1", "3", "5", "7"],
-  };
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  try {
+    const response = await fetch(
+      `https://film-fiesta-2f42541ec594.herokuapp.com/Users/${user.Username}/favorites`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const favoriteMovies = await response.json();
+    return {
+      ...user,
+      favoriteMovies,
+    };
+  } catch (error) {
+    console.error("Error fetching favorite movies:", error);
+    return user;
+  }
 };
 
 const submitEditedUserData = async (userData) => {
-  console.log("Submitting edited user data:", userData);
-  return Promise.resolve();
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch(
+      `https://film-fiesta-2f42541ec594.herokuapp.com/Users/${userData.Username}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error updating user data:", error);
+    throw error;
+  }
 };
 
 const deregisterUser = async () => {
-  console.log("Deregistering user... ");
-  return Promise.resolve();
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
+  try {
+    const response = await fetch(
+      `https://film-fiesta-2f42541ec594.herokuapp.com/Users/${user.Username}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  } catch (error) {
+    console.error("Error deregistering user:", error);
+    throw error;
+  }
 };
