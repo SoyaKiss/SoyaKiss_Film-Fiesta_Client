@@ -11,12 +11,14 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [error, setError] = useState(null);
   const [showLogin, setShowLogin] = useState(true);
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
 
   useEffect(() => {
     if (token) {
       const fetchMovies = async () => {
         try {
-          console.log("Token received in MainView:", token);
           const response = await fetch(
             "https://film-fiesta-2f42541ec594.herokuapp.com/movies",
             {
@@ -30,7 +32,6 @@ export const MainView = () => {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           const data = await response.json();
-          console.log("Movies fetched successfully:", data);
           setMovies(data);
         } catch (error) {
           console.error("Error fetching movies:", error);
@@ -46,14 +47,17 @@ export const MainView = () => {
     setSelectedMovie(movie);
   };
 
-  const handleLoggedIn = (token) => {
+  const handleLoggedIn = (user, token) => {
     setToken(token);
+    setUser(user);
     setShowLogin(false);
     localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
   };
 
   const handleLoggedOut = () => {
     setToken(null);
+    setUser(null);
     setShowLogin(true);
     localStorage.removeItem("token");
     localStorage.removeItem("user");

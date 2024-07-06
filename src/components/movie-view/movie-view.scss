@@ -1,15 +1,22 @@
+.justify-content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 300px;
+}
+
 .movie-card-container {
-  margin: auto;
-  margin-top: 50px;
-  max-width: 400px;
+  margin: 0;
+  max-width: 15%;
+  width: 100%;
 }
 
 .movie-image-container {
-  margin: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin: 25px auto;
   max-width: 80%;
   height: auto;
+  display: block;
 }
 
 .movie-back-button-container {
