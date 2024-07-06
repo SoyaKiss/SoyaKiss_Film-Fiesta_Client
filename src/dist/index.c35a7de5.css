@@ -1,3 +1,53 @@
+.card-content {
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  display: flex;
+}
+
+.image-container {
+  max-height: 375px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 375px;
+}
+
+.button-container {
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.button {
+  width: 100px;
+}
+
+.movie-card-container {
+  max-width: 400px;
+  margin: 50px auto auto;
+}
+
+.movie-image-container {
+  max-width: 80%;
+  height: auto;
+  margin: 25px auto;
+}
+
+.movie-back-button-container {
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.movie-back-button {
+  width: 100px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
@@ -19411,55 +19461,5 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}
-
-.card-content {
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  display: flex;
-}
-
-.image-container {
-  max-height: 375px;
-  overflow: hidden;
-}
-
-.image {
-  width: 100%;
-  height: 375px;
-}
-
-.button-container {
-  justify-content: center;
-  margin-top: auto;
-  margin-bottom: 20px;
-  display: flex;
-}
-
-.button {
-  width: 100px;
-}
-
-.movie-card-container {
-  max-width: 400px;
-  margin: 50px auto auto;
-}
-
-.movie-image-container {
-  max-width: 80%;
-  height: auto;
-  margin: 25px auto;
-}
-
-.movie-back-button-container {
-  justify-content: center;
-  margin-top: auto;
-  margin-bottom: 20px;
-  display: flex;
-}
-
-.movie-back-button {
-  width: 100px;
 }
 /*# sourceMappingURL=index.c35a7de5.css.map */
