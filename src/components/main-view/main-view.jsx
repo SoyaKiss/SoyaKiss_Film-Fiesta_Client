@@ -1,88 +1,70 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
-import { SignUpView } from "../signup-view/signup-view";
-import { Container, Row, Col } from "react-bootstrap";
+import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [error, setError] = useState(null);
-  const [showLogin, setShowLogin] = useState(true);
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
-    if (token) {
-      const fetchMovies = async () => {
-        try {
-          console.log("Token received in MainView:", token);
-          const response = await fetch(
-            "https://film-fiesta-2f42541ec594.herokuapp.com/movies",
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.json();
-          console.log("Movies fetched successfully:", data);
-          setMovies(data);
-        } catch (error) {
-          console.error("Error fetching movies:", error);
-          setError(error.message);
-        }
-      };
-
-      fetchMovies();
+    const savedUser = localStorage.getItem("user");
+    if (token && savedUser) {
+      setUser(savedUser);
+      fetchMovies(token);
     }
   }, [token]);
 
-  const handleMovieClick = (movie) => {
-    setSelectedMovie(movie);
+  const fetchMovies = (token) => {
+    fetch("https://film-fiesta-2f42541ec594.herokuapp.com/movies", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          return response.text().then((text) => {
+            throw new Error(text);
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const moviesFromApi = data.map((movie) => {
+          return {
+            id: movie._id,
+            Title: movie.Title,
+            ImageURL: movie.ImageURL,
+          };
+        });
+        setMovies(moviesFromApi);
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);
+      });
   };
 
-  const handleLoggedIn = (token) => {
-    setToken(token);
-    setShowLogin(false);
-    localStorage.setItem("token", token);
-  };
-
-  const handleLoggedOut = () => {
-    setToken(null);
-    setShowLogin(true);
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-  };
-
-  const handleSignUpClicked = () => {
-    setShowLogin(false);
-  };
-
-  const handleLoginClicked = () => {
-    setShowLogin(true);
-  };
-
-  if (!token) {
-    return showLogin ? (
-      <LoginView
-        onLoggedIn={handleLoggedIn}
-        onSignUpClicked={handleSignUpClicked}
-      />
-    ) : (
-      <SignUpView
-        onLoggedIn={handleLoggedIn}
-        onLoginClicked={handleLoginClicked}
-      />
+  if (!user) {
+    return (
+      <>
+        <LoginView
+          onLoggedIn={(user, token) => {
+            console.log("Logged in user:", user);
+            console.log("Received token:", token);
+            setUser(user);
+            setToken(token);
+            localStorage.setItem("user", user);
+            localStorage.setItem("token", token);
+            fetchMovies(token);
+          }}
+        />
+        or
+        <SignupView />
+      </>
     );
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
   }
 
   if (selectedMovie) {
@@ -95,19 +77,29 @@ export const MainView = () => {
   }
 
   if (movies.length === 0) {
-    return <div>This list is empty.</div>;
+    return <div>The list is empty!</div>;
   }
 
   return (
-    <Container fluid>
-      <Row>
-        {movies.map((movie) => (
-          <Col className="mb-5" key={movie._id} xs={12} sm={6} md={4} lg={3}>
-            <MovieCard movie={movie} onMovieClick={handleMovieClick} />
-          </Col>
-        ))}
-        <button onClick={handleLoggedOut}>Logout</button>
-      </Row>
-    </Container>
+    <div>
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          onMovieClick={(newSelectedMovie) => {
+            setSelectedMovie(newSelectedMovie);
+          }}
+        />
+      ))}
+      <button
+        onClick={() => {
+          setUser(null);
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+        }}
+      >
+        Logout
+      </button>
+    </div>
   );
 };
