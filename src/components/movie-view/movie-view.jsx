@@ -1,9 +1,9 @@
-import { Button, Card, Container, Col, Row } from "react-bootstrap";
+import { Button, Card, Container, Row } from "react-bootstrap";
 import "./movie-view.scss";
 
 export const MovieView = ({ movie, onBackClick }) => {
   return (
-    <Container>
+    <Container className="d-flex justify-content-center align-items-center vh-100">
       <Row className="justify-content-center">
         <Card className="movie-card-container">
           <Card.Img

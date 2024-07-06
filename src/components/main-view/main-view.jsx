@@ -4,6 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignUpView } from "../signup-view/signup-view";
 import { Container, Row, Col } from "react-bootstrap";
+import "./main-view.scss";
 
 export const MainView = () => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
@@ -110,7 +111,9 @@ export const MainView = () => {
             <MovieCard movie={movie} onMovieClick={handleMovieClick} />
           </Col>
         ))}
-        <button onClick={handleLoggedOut}>Logout</button>
+        <button className="custom-button" onClick={handleLoggedOut}>
+          Logout
+        </button>
       </Row>
     </Container>
   );

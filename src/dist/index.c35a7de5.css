@@ -26,15 +26,25 @@
   width: 100px;
 }
 
+.justify-content-center {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 300px;
+  display: flex;
+}
+
 .movie-card-container {
-  max-width: 400px;
-  margin: 50px auto auto;
+  width: 100%;
+  max-width: 15%;
+  margin: 0;
 }
 
 .movie-image-container {
   max-width: 80%;
   height: auto;
   margin: 25px auto;
+  display: block;
 }
 
 .movie-back-button-container {
@@ -46,6 +56,24 @@
 
 .movie-back-button {
   width: 100px;
+}
+
+.custom-button {
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color .3s;
+  display: inline-block;
+}
+
+.custom-button:hover {
+  background-color: #0056b3;
 }
 
 @media (prefers-reduced-motion: no-preference) {
