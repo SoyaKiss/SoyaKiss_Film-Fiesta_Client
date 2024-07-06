@@ -1,13 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Button, Form, Container, Row, Col } from "react-bootstrap";
 
-export const LoginView = ({ onLoggedIn }) => {
+export const LoginView = ({ onLoggedIn, onSignUpClicked }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const data = {
       Username: username,
       Password: password,
@@ -21,49 +20,65 @@ export const LoginView = ({ onLoggedIn }) => {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Login failed");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
+        return response.json();
       })
       .then((data) => {
-        if (data.token) {
+        console.log("Login response:", data);
+        if (data.user && data.token) {
+          localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", data.token);
-          localStorage.setItem("user", username);
-          console.log("Token stored in localStorage:", data.token);
-          onLoggedIn(username, data.token);
+          onLoggedIn(data.token);
         } else {
-          alert("Login failed");
+          alert("No such user");
         }
       })
-      .catch((error) => {
-        console.error("Error during login:", error);
-        alert("Login failed");
+      .catch((e) => {
+        console.error("Login error:", e);
+        alert("Something went wrong");
       });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <Container fluid>
+      <Row xs={1} sm={2} md={3} lg={4} xl={4}>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="formUsername">
+            <Form.Label>Username:</Form.Label>
+            <Form.Control
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              minLength="3"
+            />
+            <Form.Group controlId="formPassword">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <br></br>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+            <br></br>
+            <br></br>
+            <Button
+              onClick={onSignUpClicked}
+              variant="secondary"
+              type="Don't have an account?"
+            >
+              Sign Up Here
+            </Button>
+          </Form.Group>
+        </Form>
+      </Row>
+    </Container>
   );
 };
