@@ -21,7 +21,9 @@ export const LoginView = ({ onLoggedIn, onSignUpClicked }) => {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          return response.text().then((text) => {
+            throw new Error(`Network response was not ok: ${text}`);
+          });
         }
         return response.json();
       })
@@ -30,14 +32,14 @@ export const LoginView = ({ onLoggedIn, onSignUpClicked }) => {
         if (data.user && data.token) {
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", data.token);
-          onLoggedIn(data.token);
+          onLoggedIn(data.user, data.token);
         } else {
-          alert("No such user");
+          alert("Failed to login. Please try again.");
         }
       })
       .catch((e) => {
         console.error("Login error:", e);
-        alert("Something went wrong");
+        alert(`Something went wrong: ${e.message}`);
       });
   };
 
@@ -54,29 +56,25 @@ export const LoginView = ({ onLoggedIn, onSignUpClicked }) => {
               required
               minLength="3"
             />
-            <Form.Group controlId="formPassword">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </Form.Group>
-            <br></br>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-            <br></br>
-            <br></br>
-            <Button
-              onClick={onSignUpClicked}
-              variant="secondary"
-              type="Don't have an account?"
-            >
-              Sign Up Here
-            </Button>
           </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <br />
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+          <br />
+          <br />
+          <Button onClick={onSignUpClicked} variant="secondary" type="button">
+            Sign Up Here
+          </Button>
         </Form>
       </Row>
     </Container>

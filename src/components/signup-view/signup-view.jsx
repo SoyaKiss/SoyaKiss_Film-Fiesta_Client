@@ -25,19 +25,16 @@ export const SignUpView = ({ onLoggedIn, onLoginClicked }) => {
       },
       body: JSON.stringify(data),
     })
-      .then((response) => {
+      .then(async (response) => {
         if (!response.ok) {
-          console.error("Network response was not ok", response.statusText);
-          throw new Error("Network response was not ok");
+          const text = await response.text();
+          throw new Error(`Network response was not ok: ${text}`);
         }
         return response.json();
       })
       .then((data) => {
-        console.log("Signup response:", data);
         if (data.user && data.token) {
-          localStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.setItem("token", data.token);
-          onLoggedIn(data.token);
+          onLoggedIn(data.user, data.token);
         } else {
           alert("Failed to signup. Please try again.");
         }
@@ -59,60 +56,54 @@ export const SignUpView = ({ onLoggedIn, onLoginClicked }) => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              minLength="3"
+              minLength="5"
             />
-            <Form.Group controlId="formPassword">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <Form.Group controlId="formEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-
-                <Form.Group controlId="formFullName">
-                  <Form.Label>Full Name</Form.Label>
-                  <Form.Control
-                    type="fullName"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    required
-                  />
-                </Form.Group>
-
-                <Form.Group controlId="formBirthday">
-                  <Form.Label>Birthday</Form.Label>
-                  <Form.Control
-                    type="date"
-                    value={birthday}
-                    onChange={(e) => setBirthday(e.target.value)}
-                    required
-                  />
-                </Form.Group>
-              </Form.Group>
-            </Form.Group>
-            <br></br>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-            <br></br>
-            <br></br>
-            <Button
-              onClick={onLoginClicked}
-              variant="secondary"
-              type="Login Here"
-            >
-              Log In Here
-            </Button>
           </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formEmail">
+            <Form.Label>Email:</Form.Label>
+            <Form.Control
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formFullName">
+            <Form.Label>Full Name:</Form.Label>
+            <Form.Control
+              type="text"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formBirthday">
+            <Form.Label>Birthday:</Form.Label>
+            <Form.Control
+              type="date"
+              value={birthday}
+              onChange={(e) => setBirthday(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <br />
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+          <br />
+          <br />
+          <Button onClick={onLoginClicked} variant="secondary">
+            Log In Here
+          </Button>
         </Form>
       </Row>
     </Container>
