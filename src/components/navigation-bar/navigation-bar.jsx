@@ -21,7 +21,8 @@ export const NavigationBar = ({
         <Navbar.Brand as={Link} to="/">
           <img
             src={logo}
-            className="logo d-inline-block align-top"
+            style={{ width: "75px", height: "75px", objectFit: "contain" }}
+            className="d-inline-block align-top"
             alt="Film Fiesta Logo"
           />
         </Navbar.Brand>
