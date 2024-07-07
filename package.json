@@ -1,8 +1,9 @@
 {
-  "name": "package.json",
+  "name": "film-fiesta-client",
   "version": "1.0.0",
   "scripts": {
     "start": "parcel src/index.html",
+    "build": "parcel build src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -10,17 +11,18 @@
   "description": "<strong>Film-Fiesta App Build Instructions</strong>",
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "node-sass": "^9.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.3.1",
     "react-router": "^6.3.0",
     "react-router-bootstrap": "^0.26.2",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.23.1",
+    "sass-loader": "^14.2.1"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.12.0",
     "process": "^0.11.10"
-  },
-  "main": "index.js"
+  }
 }
