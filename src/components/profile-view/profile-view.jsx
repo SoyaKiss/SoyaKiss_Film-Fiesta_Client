@@ -80,6 +80,7 @@ export const ProfileView = ({ user, token, onUserUpdated }) => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         navigate("/login");
+        window.location.reload();
       } else {
         const message = await response.text();
         setError(message);
