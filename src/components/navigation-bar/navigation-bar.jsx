@@ -23,8 +23,8 @@ export const NavigationBar = ({
             src={logo}
             width="75px"
             height="75px"
-            className="d-inline-block align-top"
-            alt="logo"
+            className="logo d-inline-block align-top"
+            alt="Film Fiestsa Logo"
           />
         </Navbar.Brand>
         <Nav className="me-auto">
