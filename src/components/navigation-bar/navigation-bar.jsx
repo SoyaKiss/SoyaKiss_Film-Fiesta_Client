@@ -21,8 +21,6 @@ export const NavigationBar = ({
         <Navbar.Brand as={Link} to="/">
           <img
             src={logo}
-            width="75px"
-            height="75px"
             className="logo d-inline-block align-top"
             alt="Film Fiesta Logo"
           />
