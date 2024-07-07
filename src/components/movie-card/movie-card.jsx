@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import heartOutline from "../../assets/heart-outline.png"; // Replace with your heart outline image path
-import heartFilled from "../../assets/heart-filled.png"; // Replace with your heart filled image path
+import heartOutline from "../../assets/heart-outline.png";
+import heartFilled from "../../assets/heart-filled.png";
 import "./movie-card.scss";
 
 export const MovieCard = ({ movie, onFavoriteToggle, isFavorite }) => {
