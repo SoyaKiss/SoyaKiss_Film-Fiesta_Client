@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Container, Nav, Form, FormControl } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo-no-background.svg";
+import logo from "../../assets/logo-no-background.png";
 import "./navigation-bar.scss";
 
 export const NavigationBar = ({
@@ -24,7 +24,7 @@ export const NavigationBar = ({
             width="75px"
             height="75px"
             className="logo d-inline-block align-top"
-            alt="Film Fiestsa Logo"
+            alt="Film Fiesta Logo"
           />
         </Navbar.Brand>
         <Nav className="me-auto">
