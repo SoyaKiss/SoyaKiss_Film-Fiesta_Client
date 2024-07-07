@@ -1,9 +1,19 @@
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import React from "react";
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import heartOutline from "../../assets/heart-outline.png"; // Replace with your heart outline image path
+import heartFilled from "../../assets/heart-filled.png"; // Replace with your heart filled image path
 import "./movie-card.scss";
 
-export const MovieCard = ({ movie, onMovieClick }) => {
+export const MovieCard = ({ movie, onFavoriteToggle, isFavorite }) => {
+  const [isFavoriteState, setIsFavoriteState] = useState(isFavorite);
+
+  const handleFavoriteClick = () => {
+    setIsFavoriteState(!isFavoriteState);
+    onFavoriteToggle(movie);
+  };
+
   return (
     <Card className="h-100" style={{ width: "16rem" }}>
       <div className="card-content">
@@ -15,12 +25,21 @@ export const MovieCard = ({ movie, onMovieClick }) => {
           <Card.Text>{movie.Description}</Card.Text>
         </Card.Body>
         <div className="button-container">
+          <Link to={`/movies/${movie._id}`} state={{ from: "main" }}>
+            <Button variant="outline-secondary" className="more-button">
+              More
+            </Button>
+          </Link>
           <Button
             variant="outline-secondary"
-            onClick={() => onMovieClick(movie)}
-            className="button"
+            onClick={handleFavoriteClick}
+            className="favorite-button"
           >
-            More ...
+            <img
+              src={isFavoriteState ? heartFilled : heartOutline}
+              alt="Favorite"
+              className="heart-icon"
+            />
           </Button>
         </div>
       </div>
@@ -30,9 +49,11 @@ export const MovieCard = ({ movie, onMovieClick }) => {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     ImageURL: PropTypes.string.isRequired,
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
+  onFavoriteToggle: PropTypes.func.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
 };

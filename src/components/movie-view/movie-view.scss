@@ -1,15 +1,13 @@
+.movie-card-container {
+  margin-bottom: 500px;
+}
+
 .justify-content-center {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   padding: 0 300px;
-}
-
-.movie-card-container {
-  margin: 0;
-  max-width: 15%;
-  width: 100%;
 }
 
 .movie-image-container {
@@ -28,4 +26,8 @@
 
 .movie-back-button {
   width: 100px;
+}
+
+.movie-title {
+  padding-bottom: 15px;
 }
