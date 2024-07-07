@@ -42492,8 +42492,8 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
-var _logoNoBackgroundSvg = require("../../assets/logo-no-background.svg");
-var _logoNoBackgroundSvgDefault = parcelHelpers.interopDefault(_logoNoBackgroundSvg);
+var _logoNoBackgroundPng = require("../../assets/logo-no-background.png");
+var _logoNoBackgroundPngDefault = parcelHelpers.interopDefault(_logoNoBackgroundPng);
 var _navigationBarScss = require("./navigation-bar.scss");
 const NavigationBar = ({ user, onLoggedOut, searchQuery, setSearchQuery })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
@@ -42507,11 +42507,14 @@ const NavigationBar = ({ user, onLoggedOut, searchQuery, setSearchQuery })=>{
                     as: (0, _reactRouterDom.Link),
                     to: "/",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                        src: (0, _logoNoBackgroundSvgDefault.default),
-                        width: "75",
-                        height: "75",
+                        src: (0, _logoNoBackgroundPngDefault.default),
+                        style: {
+                            width: "75px",
+                            height: "75px",
+                            objectFit: "contain"
+                        },
                         className: "d-inline-block align-top",
-                        alt: "logo"
+                        alt: "Film Fiesta Logo"
                     }, void 0, false, {
                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
                         lineNumber: 22,
@@ -42531,7 +42534,7 @@ const NavigationBar = ({ user, onLoggedOut, searchQuery, setSearchQuery })=>{
                             children: "Home"
                         }, void 0, false, {
                             fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                            lineNumber: 31,
+                            lineNumber: 30,
                             columnNumber: 11
                         }, undefined),
                         user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -42542,7 +42545,7 @@ const NavigationBar = ({ user, onLoggedOut, searchQuery, setSearchQuery })=>{
                                     children: "Profile"
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 36,
+                                    lineNumber: 35,
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -42551,7 +42554,7 @@ const NavigationBar = ({ user, onLoggedOut, searchQuery, setSearchQuery })=>{
                                     children: "Favorites"
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 39,
+                                    lineNumber: 38,
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -42559,7 +42562,7 @@ const NavigationBar = ({ user, onLoggedOut, searchQuery, setSearchQuery })=>{
                                     children: "Logout"
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 42,
+                                    lineNumber: 41,
                                     columnNumber: 15
                                 }, undefined)
                             ]
@@ -42570,13 +42573,13 @@ const NavigationBar = ({ user, onLoggedOut, searchQuery, setSearchQuery })=>{
                             children: "Login"
                         }, void 0, false, {
                             fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                            lineNumber: 46,
+                            lineNumber: 45,
                             columnNumber: 13
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 30,
+                    lineNumber: 29,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
@@ -42590,12 +42593,12 @@ const NavigationBar = ({ user, onLoggedOut, searchQuery, setSearchQuery })=>{
                         onChange: (e)=>setSearchQuery(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                        lineNumber: 52,
+                        lineNumber: 51,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 51,
+                    lineNumber: 50,
                     columnNumber: 9
                 }, undefined)
             ]
@@ -42619,10 +42622,10 @@ $RefreshReg$(_c, "NavigationBar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"b0DLi","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6FNd7","../../assets/logo-no-background.svg":"fsNxH","react":"21dqq","./navigation-bar.scss":"dnXvl"}],"fsNxH":[function(require,module,exports) {
-module.exports = require("fde954f9b2b37c38").getBundleURL("1oFFg") + "logo-no-background.fe105b02.svg" + "?" + Date.now();
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"b0DLi","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6FNd7","react":"21dqq","./navigation-bar.scss":"dnXvl","../../assets/logo-no-background.png":"3Jh8f"}],"dnXvl":[function() {},{}],"3Jh8f":[function(require,module,exports) {
+module.exports = require("3f0b8dc500163df7").getBundleURL("1oFFg") + "logo-no-background.09f489d1.png" + "?" + Date.now();
 
-},{"fde954f9b2b37c38":"al2Ip"}],"dnXvl":[function() {},{}],"2vVqf":[function(require,module,exports) {
+},{"3f0b8dc500163df7":"al2Ip"}],"2vVqf":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$3c12 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -43233,6 +43236,6 @@ exports.hydrateRoot = function(c, h, o) {
     }
 };
 
-},{"aaccff5d309d9239":"j6uA9"}]},["fSApm","2ZAs0","d8Dch"], "d8Dch", "parcelRequire028f")
+},{"aaccff5d309d9239":"j6uA9"}]},["fSApm","2ZAs0","d8Dch"], "d8Dch", "parcelRequire0749")
 
 //# sourceMappingURL=index.0d6fcb10.js.map
