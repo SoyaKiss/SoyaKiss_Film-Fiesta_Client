@@ -1,0 +1,67 @@
+.mini-movie-card-container {
+  margin: 0;
+  max-width: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  height: 300px;
+}
+
+.mini-movie-image-container {
+  width: 100%;
+  padding-top: 150%;
+  position: relative;
+}
+
+.mini-movie-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mini-movie-title {
+  text-align: center;
+  margin-top: 10px;
+  height: 5em;
+  overflow: hidden;
+  display: block;
+  line-height: 1.5em;
+  white-space: normal;
+}
+
+.mini-movie-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+  padding-bottom: 0 10px 10px 10px;
+}
+
+.mini-movie-back-button-container {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.mini-movie-back-button {
+  width: 100px;
+}
+
+.mini-movie-card {
+  width: 100%;
+}
+
+.more-button {
+  margin-right: 10px;
+}
+
+.remove-button {
+  margin-left: 10px;
+}
