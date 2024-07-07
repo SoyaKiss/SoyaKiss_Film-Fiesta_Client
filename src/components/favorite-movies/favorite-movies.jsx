@@ -7,14 +7,24 @@ export const FavoriteMovies = ({ favorites, onRemoveFavorite }) => {
   const validFavorites = favorites.filter(
     (movie) => movie._id && movie.Title && movie.ImageURL
   );
+
   return (
     <Container>
       <Row>
-        {validFavorites.map((movie) => (
-          <Col key={movie._id} xs={12} sm={6} md={4} lg={3}>
-            <MiniMovieCard movie={movie} onRemoveFavorite={onRemoveFavorite} />
+        {validFavorites.length === 0 ? (
+          <Col>
+            <div>No favorite movies found.</div>
           </Col>
-        ))}
+        ) : (
+          validFavorites.map((movie) => (
+            <Col key={movie._id} xs={12} sm={6} md={4} lg={3}>
+              <MiniMovieCard
+                movie={movie}
+                onRemoveFavorite={onRemoveFavorite}
+              />
+            </Col>
+          ))
+        )}
       </Row>
     </Container>
   );

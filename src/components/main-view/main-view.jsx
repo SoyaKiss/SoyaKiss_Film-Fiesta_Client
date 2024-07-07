@@ -56,11 +56,31 @@ export const MainView = () => {
   }, [token]);
 
   useEffect(() => {
-    // Restore scroll position when component mounts
-    if (mainViewRef.current) {
-      mainViewRef.current.scrollTop = scrollPosition;
+    if (user && user.Username) {
+      const fetchFavorites = async () => {
+        try {
+          const response = await fetch(
+            `https://film-fiesta-2f42541ec594.herokuapp.com/Users/${user.Username}/favorites`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          setFavorites(data);
+        } catch (error) {
+          console.error("Error fetching favorites:", error);
+        }
+      };
+
+      fetchFavorites();
     }
-  }, [scrollPosition]);
+  }, [token, user]);
 
   const handleLoggedIn = (user, token) => {
     setToken(token);
@@ -86,22 +106,60 @@ export const MainView = () => {
     setShowLogin(true);
   };
 
-  const handleFavoriteToggle = (movie) => {
+  const handleFavoriteToggle = async (movie) => {
     if (!movie._id || !movie.Title || !movie.ImageURL) {
       console.error("Invalid movie object", movie);
       return;
     }
 
     const isFavorite = favorites.some((fav) => fav._id === movie._id);
-    if (isFavorite) {
-      setFavorites(favorites.filter((fav) => fav._id !== movie._id));
-    } else {
-      setFavorites([...favorites, movie]);
+    const url = `https://film-fiesta-2f42541ec594.herokuapp.com/Users/${user.Username}/favorites/${movie._id}`;
+    const method = isFavorite ? "DELETE" : "POST";
+
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const updatedUser = await response.json();
+      setUser(updatedUser);
+      setFavorites(updatedUser.favoriteMovies);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+    } catch (error) {
+      console.error("Error updating favorites:", error);
     }
   };
 
-  const handleRemoveFavorite = (movie) => {
-    setFavorites(favorites.filter((fav) => fav._id !== movie._id));
+  const handleRemoveFavorite = async (movie) => {
+    const url = `https://film-fiesta-2f42541ec594.herokuapp.com/Users/${user.Username}/favorites/${movie._id}`;
+    try {
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const updatedUser = await response.json();
+      setUser(updatedUser);
+      setFavorites(updatedUser.favoriteMovies);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+    } catch (error) {
+      console.error("Error removing favorite:", error);
+    }
   };
 
   const handleUserUpdated = (updatedUser) => {
@@ -110,7 +168,7 @@ export const MainView = () => {
   };
 
   const handleMovieClick = (movieId) => {
-    setScrollPosition(mainViewRef.current.scrollTop); // Store the scroll position
+    setScrollPosition(mainViewRef.current.scrollTop);
     navigate(`/movies/${movieId}`);
   };
 
@@ -146,7 +204,7 @@ export const MainView = () => {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
-      <Container fluid style={{ paddingTop: "150px" }} ref={mainViewRef}>
+      <Container fluid className="main-view-container" ref={mainViewRef}>
         <Routes>
           <Route
             path="/"
@@ -181,11 +239,15 @@ export const MainView = () => {
           <Route
             path="/profile"
             element={
-              <ProfileView
-                user={user}
-                token={token}
-                onUserUpdated={handleUserUpdated}
-              />
+              user ? (
+                <ProfileView
+                  user={user}
+                  token={token}
+                  onUserUpdated={handleUserUpdated}
+                />
+              ) : (
+                <div>Loading...</div>
+              )
             }
           />
           <Route
@@ -203,6 +265,7 @@ export const MainView = () => {
           />
         </Routes>
       </Container>
+
       <div className="fixed-footer">
         <Button
           variant="outline-secondary"
