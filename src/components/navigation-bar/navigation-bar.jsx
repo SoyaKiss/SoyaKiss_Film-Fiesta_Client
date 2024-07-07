@@ -21,8 +21,8 @@ export const NavigationBar = ({
         <Navbar.Brand as={Link} to="/">
           <img
             src={logo}
-            width="75"
-            height="75"
+            width="75px"
+            height="75px"
             className="d-inline-block align-top"
             alt="logo"
           />
