@@ -1,29 +1,26 @@
 .signup-card {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   margin: auto;
+  padding: 20px;
 }
 
 .signup-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
 }
 
-.signup-button {
-  margin-bottom: 5px;
-  margin-top: 25px;
-  width: 150px;
-  text-align: center;
-}
-
-.login-button {
-  margin-top: 10px;
+.signup-form input {
+  width: 100%;
   margin-bottom: 10px;
-  width: 150px;
-  text-align: center;
 }
 
-.text-left {
-  text-align: left;
+.signup-card .signup-form .signup-button,
+.signup-card .signup-form .signup-button {
+  margin-bottom: 20px;
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
 }

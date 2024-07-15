@@ -45,9 +45,12 @@ export const LoginView = ({ onLoggedIn, onSignUpClicked }) => {
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center vh-100">
-      <Row>
-        <Col>
+    <Container
+      fluid
+      className="d-flex justify-content-center align-items-center vh-100"
+    >
+      <Row className="w-100 justify-content-center">
+        <Col xs={12} sm={10} md={8} lg={6} xl={5}>
           <Card className="login-card">
             <Card.Body>
               <Card.Title className="text-left">Login</Card.Title>

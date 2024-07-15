@@ -83,72 +83,71 @@
 
 .login-card {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   margin: auto;
+  padding: 20px;
 }
 
 .login-form {
   flex-direction: column;
-  align-items: center;
+  width: 100%;
   display: flex;
 }
 
-.sign-up-button {
-  text-align: center;
-  width: 150px;
-  margin-top: 10px;
+.login-form input {
+  width: 100%;
   margin-bottom: 10px;
+}
+
+.login-card .login-form .login-button, .login-card .login-form .sign-up-button {
+  text-align: center;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+@media screen and (width <= 375px) {
+  .login-card {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+  }
 }
 
 .signup-card {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   margin: auto;
+  padding: 20px;
 }
 
 .signup-form {
   flex-direction: column;
-  align-items: center;
+  width: 100%;
   display: flex;
 }
 
-.signup-button {
-  text-align: center;
-  width: 150px;
-  margin-top: 25px;
-  margin-bottom: 5px;
-}
-
-.login-button {
-  text-align: center;
-  width: 150px;
-  margin-top: 10px;
+.signup-form input {
+  width: 100%;
   margin-bottom: 10px;
 }
 
-.text-left {
-  text-align: left;
+.signup-card .signup-form .signup-button, .signup-card .signup-form .signup-button {
+  text-align: center;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  display: inline-block;
 }
 
 .main-view-container {
   padding-top: 150px;
   padding-bottom: 75px;
-}
-
-.fixed-footer {
-  text-align: center;
-  z-index: 1000;
-  background-color: #fff;
-  border-top: 1px solid #ddd;
-  width: 100%;
-  padding: 10px 0;
-  position: fixed;
-  bottom: 0;
-  box-shadow: 0 -2px 5px #0000001a;
-}
-
-.footer-logout-button {
-  margin: 0 auto;
 }
 
 .sticky-navbar {

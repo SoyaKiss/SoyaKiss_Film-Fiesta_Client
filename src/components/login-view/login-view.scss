@@ -1,29 +1,38 @@
 .login-card {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   margin: auto;
+  padding: 20px;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
 }
 
-.login-button {
-  margin-bottom: 5px;
-  margin-top: 25px;
-  width: 150px;
-  text-align: center;
-}
-
-.sign-up-button {
-  margin-top: 10px;
+.login-form input {
+  width: 100%;
   margin-bottom: 10px;
-  width: 150px;
-  text-align: center;
 }
 
-.text-left {
-  text-align: left;
+.login-card .login-form .login-button,
+.login-card .login-form .sign-up-button {
+  margin-bottom: 5px;
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+@media screen and (max-width: 375px) {
+  .login-card {
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }

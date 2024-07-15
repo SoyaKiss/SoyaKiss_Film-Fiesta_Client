@@ -174,19 +174,6 @@ export const ProfileView = ({ user, token, onUserUpdated }) => {
           </Card>
         </Col>
       </Row>
-      <div className="fixed-footer">
-        <Button
-          variant="outline-secondary"
-          onClick={() => {
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
-            navigate("/login");
-          }}
-          className="footer-logout-button"
-        >
-          Logout
-        </Button>
-      </div>
     </Container>
   );
 };

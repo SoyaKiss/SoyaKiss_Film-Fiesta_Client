@@ -265,16 +265,6 @@ export const MainView = () => {
           />
         </Routes>
       </Container>
-
-      <div className="fixed-footer">
-        <Button
-          variant="outline-secondary"
-          onClick={handleLoggedOut}
-          className="footer-logout-button"
-        >
-          Logout
-        </Button>
-      </div>
     </>
   );
 };
