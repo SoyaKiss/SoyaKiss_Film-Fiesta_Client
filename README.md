@@ -1,7 +1,7 @@
 <h2>Film-Fiesta; Server Side Component of a "Movies" App</h2>
 
 <h3>Overview:</h3>
-<p>We will be using using build tools to set up and build Film-Fiesta, a movie app.
+<p>We will be using build tools to set up and build Film-Fiesta, a movie app.
 We will be organizing the Film-Fiesta-client directory with the required files and we will be using Parcel to complete the necessary build operations for this project.</p>
 
 <h3>Project Structure:</h3>
