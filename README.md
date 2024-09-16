@@ -1,44 +1,45 @@
-<strong>Film-Fiesta App Build Instructions</strong>
+<h2>Film-Fiesta; Server Side Component of a "Movies" App</h2>
 
-<strong>Overview</strong><br>
-We are using build tools to set up and build Film-Fiesta, a movie app.
-Specifically, We will be organizing the Film-Fiesta-client directory with the required files and we will be using Parcel to complete the
-necessary build operations for this project.
+<h3>Overview:</h3>
+<p>We will be using using build tools to set up and build Film-Fiesta, a movie app.
+We will be organizing the Film-Fiesta-client directory with the required files and we will be using Parcel to complete the necessary build operations for this project.</p>
 <br><br>
 
-<strong>Project Structure</strong><br>
-Film-Fiesta-client<br>
+<h3>Project Structure:</h3>
+<p>The project is organized as follows:</p>
+<ul>
+    <li><code>Film-Fiesta-client</code></li>
+    <ul>
+        <li><code>.gitignore</code></li>
+        <li><code>package.json</code></li>
+    </ul>
+    <li><code>src</code></li>
+    <ul>
+        <li><code>index.html</code></li>
+        <li><code>index.scss</code></li>
+        <li><code>index.jsx</code></li>
+    </ul>
+</ul>
 
-- .gitignore<br>
-- package.json<br>
+<h3>Description:</h3>
+<ul>
+    <li><code>.gitignore</code>: Specifies intentionally untracked files to ignore in the Git repository, preventing unnecessary files from being committed.</li>
+    <li><code>package.json</code>: Contains project metadata, lists dependencies, and provides scripts for various tasks.</li>
+    <li><code>src</code>: Directory containing the source code for the Film-Fiesta app.</li>
+    <li><code>index.html</code>: Main HTML file serving as the entry point for the application.</li>
+    <li><code>index.scss</code>: Main SCSS (Sass) file for styling the application.</li>
+    <li><code>index.jsx</code>: Main JavaScript file that initializes the application and renders the user interface.</li>
+</ul>
 
-<strong>src</strong>
+<h3>Getting Started:</h3>
+<p>To get started with building the Film-Fiesta app, follow these steps:</p>
+<ol>
+    <li>Set up the <code>Film-Fiesta-client</code> directory.</li>
+    <li>Ensure Node.js and npm are installed on your system.</li>
+    <li>Install Parcel as the build tool.</li>
+    <li>Organize your project structure as described above.</li>
+    <li>Begin coding the app logic and styling within the respective source code files.</li>
+</ol>
 
-- index.html<br>
-- index.scss<br>
-- index.scss<br>
-  <br><br>
-
-<strong>Description</strong><br>
-
-- .gitignore: This file specifies intentionally untracked files to ignore in the Git repository. It helps prevent unnecessary files from being committed to the repository.<br>
-- package.json: This file holds various metadata relevant to the project. It also lists the dependencies required by the project and provides scripts for various tasks.<br>
-- src: This directory contains the source code for the Film-Fiesta app.<br>
-- index.html: The main HTML file that serves as the entry point for the application.<br>
-- index.scss: The main SCSS (Sass) file for styling the application. <br>
-- index.jsx: The main JavaScript file that initializes the application and renders the user interface.<br>
-  <br><br>
-
-<strong>Getting Started</strong><br>
-To get started with building the Film-Fiesta app, these are the steps:<br>
-
-1. Set up the Film-Fiesta-client directory.
-2. Ensure we have Node.js and npm installed on our system.
-3. Install Parcel as our build tool.
-4. Organize our project structure as described above.
-5. Begin coding our app logic and styling within the respective source code files.
-   <br><br>
-
-<strong>Building the App</strong><br>
-Once the project is set up and our code is in place, we can use Parcel to build the Film-Fiesta app. Parcel will bundle our source code files and assets into a distributable format, making it ready for deployment.
-To build our app using Parcel, run the appropriate build command defined in your package.json file.
+<h3>Building the App:</h3>
+<p>Once the project is set up and your code is written, use Parcel to build the app. Parcel will handle the bundling and transformation of your source files, ensuring that your application is ready for deployment.</p>
